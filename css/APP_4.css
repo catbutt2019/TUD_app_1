@@ -1,0 +1,280 @@
+body {
+    background-color: #eee;
+        margin: 0;
+    font-family:'Roboto', sans-serif;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    color: #212529 !important;
+    text-align: left !important;
+    background-color: #fff !important;
+}
+
+
+#home-icon, #reminder_icon{
+    margin-top: 12px !important;
+    margin-right: 12px !important;
+}
+
+
+.thumb {
+    height: 30px
+}
+
+
+
+#Loader {
+    content: center;
+}
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+      
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+       
+        margin: 0px;
+        padding-top: 2px;
+      }
+ 
+      #videosbg {
+          background-color: #eeeeee;
+      }   
+      
+      videos {
+         background-color: #eeeeee;
+      }
+      
+      
+      #videos-container {
+         background-color: #eeeeee; 
+      }
+      
+  
+      
+      
+      
+      
+      
+    /* Footer */
+    
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:#f7f6f6;
+  text-align: center;
+  font-size: 12px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+ 
+
+
+.btn btn-white {
+    background-color: background;
+}
+
+.container {
+    background-color: #ffffff;
+    
+    
+}
+
+.p {
+    margin: 0px !important;
+}
+
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  background-color: #eeeeee;
+  box-sizing: content-box !important; 
+ 
+ 
+ 
+}
+
+ ::-webkit-scrollbar { 
+    display: none; 
+}
+
+   .vidEle{
+    display: inline-block !important; 
+    padding: 12px !important;
+    border-radius: 2px;
+    background-color: #eeeeee;
+    
+    
+
+  }
+  
+  .card {
+      width: 680px;
+      height: 110px;
+      background-color: #eeeeee;
+      border: none !important;
+  }
+  
+  
+  .form {
+      padding-top: 60px;
+      padding-bottom: 100px;
+      text-align: center;
+      margin-top: 500px;
+       background : #FFFFFF;
+  background : rgba(255, 255, 255, 1);
+      box-shadow : 1px 10px 12px rgba(10, 77, 108, 0.26);
+  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=1, OffY=10, Color='#0A4D6C') ;
+}
+
+  
+
+
+input[type="email"], [type="password"]  {
+  font-size: 60px;
+  color:#8b8b8b;
+  margin: 30px;
+  background-color:#ffffff;
+  box-shadow : 1px 10px 12px rgba(10, 77, 108, 0.26);
+  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=1, OffY=10, Color='#0A4D6C') ;
+  border: none;
+  text-align: center;
+  outline: none !important;
+}
+
+.button-block {
+    text-align: center;
+    border: none;
+    background-color: #0a4d6c;
+    color: white;
+    font-size: 70px;
+    padding: 10px;
+    padding-left: 100px;
+    padding-right: 100px;
+    margin-top: 40px;
+}
+
+
+
+/*user profile */ 
+#behind_icon {
+height: 90px;
+background: rgb(35,225,227);
+background: linear-gradient(0deg, rgba(35,225,227,1) 0%, rgba(25,146,203,1) 100%);
+box-shadow : 1px 10px 26px rgba(10, 77, 108, 0.21);
+ filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=1, OffY=10, Color='#0A4D6C') ;
+
+}
+
+
+#bio {
+    margin-top: 10px;
+}
+
+ls_result_div {
+    text-align: center;
+    width: 100%;
+}
+
+
+ls_container {
+    text-align: center;
+}
+
+input [type="text"] {
+    input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none !important;
+}
+}
+
+/*tabs css */
+
+
+
+
+/* map direction panel css */
+#geoLocation #useGPS  #dirSource {
+    display: none;
+}
+
+#getDirections, #getDirections2, #getDirections3, #getDirections4{
+    background-color: #c5eff7;
+    border-radius: 14px;
+    border: none;
+    margin-bottom: 7px;
+    height: 60px;
+    width: 150px;
+    text-align: center;
+    ;
+}
+
+/* end of map direction panel css */
+
+
+/*reminder*/
+
+.col-3 {
+    border-radius: 8px 0 0 8px;
+    background-color: #7f8fa6;
+    padding-top: 10px !important;
+    
+}
+
+
+.col-7 {
+    border-radius: 0 8px 8px 0;
+    background-color: #dcdde1;
+    padding-top: 10px !important;
+}
+
+#hiderow {
+    margin-top: 10px !important;
+}
+
+#date {
+    margin-bottom: 4px !important;
+    margin-left: 14px !important;
+    font-size: 11px;
+    color: #8b8b8b;
+}
+
+#Welcome_{
+     margin-left: 14px !important;
+}
+
+#May {
+     margin-left: 14px !important;
+}
+
+#day3 {
+    font-size: 11px;
+    margin-bottom: 3px;
+}
+
+.fa-bell {
+    
+}
+
+
+#panel, #flip {
+  padding: 5px;
+  text-align: center;
+  background-color: #e5eecc;
+  border: solid 1px #c3c3c3;
+}
+
+#panel {
+  padding: 50px;
+  display: none;
+}

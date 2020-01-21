@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Google Maps API V3: Custom Directions Panel</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta name="description" content="Google Maps API V3: Custom Directions Panel" />
+    <meta name="keywords" content="Google Maps API V3, Custom Directions Panel, jQuery, jQuery tutorials, thewebstorebyg wordpress code blog" />
+    <meta name="author" content="Giri Jeedigunta - thewebstorebyg" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="mapCanvas" style="width: 100%; height: 400px;">&#160;</div>
+    <div id="directionsPanel">
+        <a href="#geoLocation" id="useGPS">Use My Location</a>
+        <p class="or">[OR]</p>
+        <div class="directionInputs">
+            <form>
+                <p>
+                    <label>A</label>
+                    <input type="text" value="" id="dirSource" />
+                </p>
+                <p>
+                    <label>B</label>
+                    <input type="text" value="Aungier Street" id="dirDestination" />
+                </p>
+                <p>
+                    <label>B</label>
+                    <input type="text" value="Bolton Street" id="dirDestination2" />
+                </p>
+                <p>
+                    <label>B</label>
+                    <input type="text" value="Technological University Dublin,Kevin Street" id="dirDestination3" />
+                </p>
+                <p>
+                    <label>B</label>
+                    <input type="text" value="TU Dublin Grangegorman" id="dirDestination4" />
+                </p>
+                
+                <a href="#getDirections" id="getDirections">Aungier Street</a>
+                <a href="#getDirections" id="getDirections2">Bolton Street</a>
+                <a href="#getDirections" id="getDirections3">Grangegorman</a>
+                <a href="#getDirections" id="getDirections4">Cathal Brugha Street</a>
+                <a href="#reset" id="paneReset">Reset</a>
+            </form>
+        </div>
+        <div id="directionSteps">
+            <p class="msg">Direction Steps Will Render Here</p>
+        </div>
+        <a href="#toggleBtn" id="paneToggle" class="out">&lt;</a>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCucXdCts1IHHYyLRf4nWEEpLaa-hLcflM&callback=init&libraries=places&sensor=false" async defer></script>
+    <script src="directions.js"></script>
+    <script>
+    function init() {
+        initMap();
+    }
+    </script>
+    <script>
+        var initMap = function() {
+
+    var map,
+        directionsService, directionsDisplay,
+        autoSrc, autoDest, pinA, pinB,
+
+        markerA = new google.maps.MarkerImage('m1.png',
+            new google.maps.Size(24, 27),
+            new google.maps.Point(0, 0),
+            new google.maps.Point(12, 27)),
+        markerB = new google.maps.MarkerImage('m2.png',
+            new google.maps.Size(24, 28),
+            new google.maps.Point(0, 0),
+            new google.maps.Point(12, 28)),
+
+        // Caching the Selectors		
+        $Selectors = {
+            mapCanvas: jQuery('#mapCanvas')[0],
+            dirPanel: jQuery('#directionsPanel'),
+            dirInputs: jQuery('.directionInputs'),
+            dirSrc: jQuery('#dirSource'),
+            dirDst: jQuery('#dirDestination'),
+            dirDst2: jQuery('#dirDestination2'),
+            dirDst3: jQuery('#dirDestination3'),
+            dirDst4: jQuery('#dirDestination4'),
+            getDirBtn: jQuery('#getDirections'),
+            getDirBtn2: jQuery('#getDirections2'),
+            getDirBtn3: jQuery('#getDirections3'),
+            getDirBtn4: jQuery('#getDirections4'),
+            dirSteps: jQuery('#directionSteps'),
+            paneToggle: jQuery('#paneToggle'),
+            useGPSBtn: jQuery('#useGPS'),
+            paneResetBtn: jQuery('#paneReset')
+        };
+
+    function autoCompleteSetup() {
+        autoSrc = new google.maps.places.Autocomplete($Selectors.dirSrc[0]);
+        autoDest = new google.maps.places.Autocomplete($Selectors.dirDst[0]);
+        autoDest = new google.maps.places.Autocomplete($Selectors.dirDst2[0]);
+         autoDest = new google.maps.places.Autocomplete($Selectors.dirDst3[0]);
+         autoDest = new google.maps.places.Autocomplete($Selectors.dirDst4[0]);
+    } // autoCompleteSetup Ends
+
+    function directionsSetup() {
+        directionsService = new google.maps.DirectionsService();
+        directionsDisplay = new google.maps.DirectionsRenderer({
+            
+        });
+ 
+        directionsDisplay.setPanel($Selectors.dirSteps[0]);
+    } // direstionsSetup Ends
+
+    function trafficSetup() {
+        // Creating a Custom Control and appending it to the map
+        var controlDiv = document.createElement('div'),
+            controlUI = document.createElement('div'),
+            trafficLayer = new google.maps.TrafficLayer();
+
+        jQuery(controlDiv).addClass('gmap-control-container').addClass('gmnoprint');
+        jQuery(controlUI).text('Traffic').addClass('gmap-control');
+        jQuery(controlDiv).append(controlUI);
+
+        // Traffic Btn Click Event	  
+        google.maps.event.addDomListener(controlUI, 'click', function() {
+            if (typeof trafficLayer.getMap() == 'undefined' || trafficLayer.getMap() === null) {
+                jQuery(controlUI).addClass('gmap-control-active');
+                trafficLayer.setMap(map);
+            } else {
+                trafficLayer.setMap(null);
+                jQuery(controlUI).removeClass('gmap-control-active');
+            }
+        });
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
+    } // trafficSetup Ends
+
+    function mapSetup() {
+        map = new google.maps.Map($Selectors.mapCanvas, {
+            zoom: 9,
+            center: new google.maps.LatLng(42.44, -83.18),
+
+            mapTypeControl: true,
+            mapTypeControlOptions: {
+                style: google.maps.MapTypeControlStyle.DEFAULT,
+                position: google.maps.ControlPosition.TOP_RIGHT
+            },
+
+            panControl: true,
+            panControlOptions: {
+                position: google.maps.ControlPosition.RIGHT_TOP
+            },
+
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.LARGE,
+                position: google.maps.ControlPosition.RIGHT_TOP
+            },
+
+            scaleControl: true,
+            streetViewControl: true,
+            overviewMapControl: true,
+
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        autoCompleteSetup();
+        directionsSetup();
+        trafficSetup();
+    } // mapSetup Ends 
+
+    function directionsRender(source, destination) {
+        $Selectors.dirSteps.find('.msg').hide();
+        directionsDisplay.setMap(map);
+
+        var request = {
+            origin: source,
+            destination: destination,
+            provideRouteAlternatives: false,
+            travelMode: google.maps.DirectionsTravelMode.DRIVING
+        };
+
+        directionsService.route(request, function(response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+
+                directionsDisplay.setDirections(response);
+
+                var _route = response.routes[0].legs[0];
+
+                pinA = new google.maps.Marker({ position: _route.start_location, map: map, icon: markerA }),
+                    pinB = new google.maps.Marker({ position: _route.end_location, map: map, icon: markerB });
+            }
+        });
+    } // directionsRender Ends
+
+    function fetchAddress(p) {
+        var Position = new google.maps.LatLng(p.coords.latitude, p.coords.longitude),
+            Locater = new google.maps.Geocoder();
+
+        Locater.geocode({ 'latLng': Position }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                var _r = results[0];
+                $Selectors.dirSrc.val(_r.formatted_address);
+            }
+        });
+    } // fetchAddress Ends
+
+    function invokeEvents() {
+        // Get Directions
+        $Selectors.getDirBtn.on('click', function(e) {
+            e.preventDefault();
+            var src = $Selectors.dirSrc.val(),
+                dst = $Selectors.dirDst.val();
+
+            directionsRender(src, dst);
+        });
+        
+        $Selectors.getDirBtn2.on('click', function(e) {
+            e.preventDefault();
+            var src1 = $Selectors.dirSrc.val(),
+                dst2 = $Selectors.dirDst2.val();
+
+            directionsRender(src1, dst2);
+        });
+        
+        $Selectors.getDirBtn3.on('click', function(e) {
+            e.preventDefault();
+            var src3 = $Selectors.dirSrc.val(),
+                dst3 = $Selectors.dirDst3.val();
+
+            directionsRender(src3, dst3);
+        });
+        
+          $Selectors.getDirBtn4.on('click', function(e) {
+            e.preventDefault();
+            var src4 = $Selectors.dirSrc.val(),
+                dst4 = $Selectors.dirDst4.val();
+
+            directionsRender(src4, dst4);
+        });
+
+
+        // Reset Btn
+        $Selectors.paneResetBtn.on('click', function(e) {
+            $Selectors.dirSteps.html('');
+            $Selectors.dirSrc.val('');
+            $Selectors.dirDst.val('');
+
+            if (pinA) pinA.setMap(null);
+            if (pinB) pinB.setMap(null);
+
+            directionsDisplay.setMap(null);
+        });
+
+        // Toggle Btn
+        $Selectors.paneToggle.toggle(function(e) {
+            $Selectors.dirPanel.animate({ 'left': '-=305px' });
+            jQuery(this).html('&gt;');
+        }, function() {
+            $Selectors.dirPanel.animate({ 'left': '+=305px' });
+            jQuery(this).html('&lt;');
+        });
+
+        // Use My Location / Geo Location Btn
+        $Selectors.useGPSBtn.on('click', function(e) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    fetchAddress(position);
+                });
+            }
+        });
+    } //invokeEvents Ends 
+
+    mapSetup();
+    invokeEvents();
+};
+        </script>
+        
+</body>
+
+</html>

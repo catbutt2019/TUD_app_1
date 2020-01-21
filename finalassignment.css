@@ -1,0 +1,168 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15-Apr-2019, 14:01:51
+    Author     : catherine
+*/
+
+
+
+body {
+    background-color: #eee;
+        margin: 0;
+    font-family:'Roboto', sans-serif;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    color: #212529 !important;
+    text-align: left !important;
+    background-color: #fff !important;
+}
+
+.thumb {
+    height: 30px
+}
+
+
+
+#Loader {
+    content: center;
+}
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+      
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+       
+        margin: 0px;
+        padding-top: 2px;
+      }
+      
+  
+    /* Footer */
+    
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:#f7f6f6;
+  text-align: center;
+  font-size: 12px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+ 
+
+
+.btn btn-white {
+    background-color: background;
+}
+
+.container {
+    background-color: #ffffff;
+    
+    
+}
+
+.p {
+    margin: 0px !important;
+}
+
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+ 
+ 
+ 
+}
+
+ ::-webkit-scrollbar { 
+    display: none; 
+}
+
+   .vidEle{
+    display: inline-block !important; 
+    padding: 7px !important;
+    border-radius: 2px;
+    
+    
+
+  }
+  
+  .card {
+      width: 680px;
+      height: 110px;
+  }
+  
+
+  .form {
+      padding-top: 60px;
+      padding-bottom: 100px;
+      text-align: center;
+      margin-top: 500px;
+       background : #FFFFFF;
+  background : rgba(255, 255, 255, 1);
+      box-shadow : 1px 10px 12px rgba(10, 77, 108, 0.26);
+  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=1, OffY=10, Color='#0A4D6C') ;
+}
+
+  
+
+
+input[type="email"], [type="password"]  {
+  font-size: 60px;
+  color:#8b8b8b;
+  margin: 30px;
+  background-color:#ffffff;
+  box-shadow : 1px 10px 12px rgba(10, 77, 108, 0.26);
+  filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=1, OffY=10, Color='#0A4D6C') ;
+  border: none;
+  text-align: center;
+}
+
+.button-block {
+    text-align: center;
+    border: none;
+    background-color: #0a4d6c;
+    color: white;
+    font-size: 70px;
+    padding: 10px;
+    padding-left: 100px;
+    padding-right: 100px;
+    margin-top: 40px;
+}
+
+
+
+/*user profile */ 
+#behind_icon {
+height: 90px;
+background: rgb(35,225,227);
+background: linear-gradient(0deg, rgba(35,225,227,1) 0%, rgba(25,146,203,1) 100%);
+box-shadow : 1px 10px 26px rgba(10, 77, 108, 0.21);
+ filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=1, OffY=10, Color='#0A4D6C') ;
+
+}
+
+#icon{
+  position: absolute;
+  left: 145px;
+  top: 55px;
+  z-index: 1;
+}
+
+#bio {
+    margin-top: 50px;
+}
+
